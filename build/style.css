@@ -1,0 +1,1 @@
+*{padding:0;margin:0;box-sizing:border-box}body{height:100vh;background:#00f}.memory-game{width:640px;height:640px;display:flex;border:2px solid #0f0}.memory-card{border:2px solid #0ff}.back-face,.front-face{border:2px solid #ff1493}
