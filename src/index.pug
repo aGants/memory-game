@@ -1,8 +1,8 @@
 mixin card(img)
-  div(class='memory-card')
+  div(class='memory-card' data-name=img)
     img(class='front-face' src='images/'+img+'.png' alt=img)
     img(class='back-face' src='images/logo.png' alt='Memory Card')
-  div(class='memory-card')
+  div(class='memory-card' data-name=img)
     img(class='front-face' src='images/'+img+'.png' alt=img)
     img(class='back-face' src='images/logo.png' alt='Memory Card')
 
