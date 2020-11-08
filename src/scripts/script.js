@@ -53,3 +53,10 @@ function resetBoard() {
   [hasFlippedCard, lockBoard] = [false, false];
   [firstCard, secondCard] = [null, null];
 }
+
+(function mix() {
+  cards.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 12)
+    card.style.order = randomPos;
+  });
+})();
