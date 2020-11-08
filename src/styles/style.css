@@ -6,15 +6,17 @@
 
 body {
   display: flex;
+  justify-content: center;
+  align-content: center;
   height: 100vh;
-  background: #000;
+  background: #cdbba3
+;
 }
 
 .memory-game {
   display: flex;
   flex-wrap: wrap;
-  width: 640px;
-  height: 640px;
+  width: 685px;
   margin: auto;
 }
 
@@ -22,8 +24,16 @@ body {
   position: relative;
   width: 150px;
   height: 250px;
-  border: 2px solid #000;
-  border-radius: 10px;
+  margin: 10px;
+  border: 2px solid #a43604;
+  border-radius: 5px;
+  background: #161f21;
+  transform: scale(1);
+}
+
+.memory-card:active {
+  transform: scale(.95);
+  transition: transform 2.s;
 }
 
 .front-face,
@@ -31,5 +41,5 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid deeppink;
+  cursor: pointer;
 }
