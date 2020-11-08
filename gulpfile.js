@@ -3,16 +3,14 @@ let {src, dest, parallel, series, watch} = require('gulp');
 const browserSync  = require('browser-sync').create();
 const del          = require('del');
 const pug          = require('gulp-pug');
-const postcss      = require('gulp-postcss');
-// const autoprefixer = require('autoprefixer');
-const cssnano      = require('cssnano');
 const imagemin     = require('gulp-imagemin');
 const uglify       = require('gulp-uglify-es').default;
+const plumber      = require('gulp-plumber');
 
 function devServer() {
   browserSync.init({
     server: {
-      baseDir: './build'
+      baseDir: 'build/'
     },
     watch: true,
     reloadDebounce: 150,
@@ -21,19 +19,26 @@ function devServer() {
   });
 }
 
+function errorHandler(errors) {
+  console.warn('Error!');
+  console.warn(errors);
+}
+
 function buildPages() {
   return src('src/index.pug')
+    .pipe(plumber({
+      errorHandler
+    }))
     .pipe(pug())
     .pipe(dest('build/'));
 }
 
 function buildStyles() {
-  return src('src/style.css')
-    .pipe(postcss([
-      // autoprefixer(),
-      cssnano()
-    ]))
-    .pipe(dest('build/'));
+  return src('src/styles/style.css')
+    .pipe(plumber({
+      errorHandler
+    }))
+    .pipe(dest('build/styles'))
 }
 
 function buildImages() {
@@ -43,7 +48,10 @@ function buildImages() {
 }
 
 function buildScripts() {
-  return src('src/*.js')
+  return src('src/scripts/*.js')
+    .pipe(plumber({
+      errorHandler
+    }))
     .pipe(uglify())
     .pipe(dest('build/scripts/'));
 }
@@ -55,9 +63,9 @@ function clearBuild() {
 }
 
 function watchFiles() {
-  watch('src/*.pug', buildPages);
-  watch('src/*.css', buildStyles);
-  watch('src/*.js', buildScripts);
+  watch('src/styles/style.css', buildStyles);
+  watch('src/index.pug', buildPages);
+  watch('src/scripts/script.js', buildScripts);
   watch('src/images/*.*', buildImages);
 }
 
