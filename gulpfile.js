@@ -75,6 +75,8 @@ function watchFiles() {
   watch('src/images/*.*', buildImages);
 }
 
+
+exports.pages = ghPages;
 exports.default =
   series(
     clearBuild,
