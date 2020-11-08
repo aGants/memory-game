@@ -1,11 +1,17 @@
 let {src, dest, parallel, series, watch} = require('gulp');
 
+const ghpages      = require('gh-pages');
+const path         = require('path');
 const browserSync  = require('browser-sync').create();
 const del          = require('del');
 const pug          = require('gulp-pug');
 const imagemin     = require('gulp-imagemin');
 const uglify       = require('gulp-uglify-es').default;
 const plumber      = require('gulp-plumber');
+
+function ghPages(cb) {
+  ghpages.publish(path.join(process.cwd(), './build'), cb);
+}
 
 function devServer() {
   browserSync.init({
