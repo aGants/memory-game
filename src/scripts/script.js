@@ -3,11 +3,15 @@ const cards = document.querySelectorAll('.memory-card');
 
 let hasFlippedCard = false;
 let firstCard, secondCard;
+let lockBoard = false;
 
 cards.forEach(card => card.addEventListener('click', flipCard))
 
 function flipCard() {
+  if (lockBoard) return;
+
   this.classList.toggle('flip');
+  
   if (!hasFlippedCard) {
     hasFlippedCard = true;
     firstCard = this;
@@ -32,8 +36,11 @@ function disableCards() {
 }
 
 function unflipCards() {
+  lockBoard = true;
   setTimeout(() => {
     firstCard.classList.remove('flip');
     secondCard.classList.remove('flip');
+
+    lockBoard = false;
   }, (1000));
 }
