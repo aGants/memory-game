@@ -36,6 +36,10 @@ body {
   transition: transform 2.s;
 }
 
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
 .front-face,
 .back-face {
   position: absolute;
